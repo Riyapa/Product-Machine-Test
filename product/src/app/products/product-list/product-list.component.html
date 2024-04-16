@@ -1,0 +1,16 @@
+<form>
+  <h1>Product Listing Page</h1>
+
+  Category
+  <select id="pCategory" name="pCategory" (change)="categoryChange($event)">
+    <option *ngFor="let category of this.categories" [value]="category.id">
+      {{ category.name }}
+    </option>
+  </select>
+
+  <div *ngFor="let product of products">
+    <span (click)="productDetails()"><img src="{{ product.imageUrl }}" /></span>
+    <br />
+    <span>{{ product.name }}</span>
+  </div>
+</form>
