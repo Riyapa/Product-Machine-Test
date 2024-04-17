@@ -10,20 +10,20 @@ import { ProductService } from '../product.service';
 export class ProductDetailsComponent {
   productId: any;
   productDetails: any;
+  productCategoryId: any;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productId = params['id']; // Access the 'id' parameter from the URL
-      console.log('productId', this.productId);
+      this.productCategoryId = params['cid'];
       this.getProductData(this.productId);
     });
   }
 
   getProductData = (productId: any) => {
     this.productService.getProductDetails(productId).subscribe((response: any) => {
-      console.log('Response', response);
       this.productDetails = response
     })
   }

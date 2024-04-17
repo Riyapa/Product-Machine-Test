@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -8,14 +8,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-  categories: any;
-  products: any;
-  selectedCategory: any;
+  categories: any = [];
+  products: any = [];
+  selectedProducts: any = [];
 
   constructor(
     private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -25,27 +24,22 @@ export class ProductListComponent {
 
   getCategories = () => {
     this.productService.getCategories().subscribe((response: any) => {
-      console.log(response, 'categories response');
       this.categories = response;
     });
   };
 
   getProducts = () => {
     this.productService.getProducts().subscribe((response: any) => {
-      console.log('products response', response);
       this.products = response;
+       this.selectedProducts = this.products.filter((el: any) => el.categoryId == 1);
     });
   };
 
   categoryChange = (data: any) => {
-    console.log(data.target.value, 'data');
-    this.categories = this.products.find(
-      (el: any) => el.categoryId === data.target.value
-    );
-    console.log(this.categories, 'this.categories');
+    this.selectedProducts = this.products.filter((el: any) => el.categoryId == data.target.value);
   };
 
-  productDetails = () => {
-    this.router.navigateByUrl('productDetails/:id');
+  productDetails = (pid: any, cid: any) => {
+    this.router.navigateByUrl(`productDetails/${pid}/${cid}`);
   };
 }

@@ -1,16 +1,27 @@
-<form>
+<form #product="ngForm">
   <h1>Product Listing Page</h1>
 
   Category
   <select id="pCategory" name="pCategory" (change)="categoryChange($event)">
-    <option *ngFor="let category of this.categories" [value]="category.id">
+    <option
+      *ngFor="let category of categories; let i = index"
+      [value]="category.id"
+    >
       {{ category.name }}
     </option>
   </select>
-
-  <div *ngFor="let product of products">
-    <span (click)="productDetails()"><img src="{{ product.imageUrl }}" /></span>
-    <br />
-    <span>{{ product.name }}</span>
+  <div
+    *ngFor="let product of selectedProducts; let i = index"
+    [(ngModel)]="selectedProducts"
+    [ngModelOptions]="{ standalone: true }"
+    ngDefaultControl
+  >
+    <div>
+      <span (click)="productDetails(product.id, product.categoryId)"
+        ><img src="{{ product.imageUrl }}"
+      /></span>
+      <br />
+      <span>{{ product.name }}</span>
+    </div>
   </div>
 </form>

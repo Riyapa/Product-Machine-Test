@@ -1,0 +1,34 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Lenovo",
+        "imageUrl": "assets/lenovo-image.jpeg",
+        "categoryId": 1
+      },
+      {
+        "id": 2,
+        "name": "Mac",
+        "imageUrl": "assets/mac-image.jpg",
+        "categoryId": 1
+      },
+      {
+        "id": 3,
+        "name": "Dell",
+        "imageUrl": "assets/dell-image.jpeg",
+        "categoryId": 1
+      },
+      {
+        "id": 4,
+        "name": "iphone",
+        "imageUrl": "assets/iphone-image.jpeg",
+        "categoryId": 2
+      },
+      {
+        "id": 5,
+        "name": "boat",
+        "imageUrl": "assets/boat-image.jpeg",
+        "categoryId": 3
+      }
+    ]
+  }
